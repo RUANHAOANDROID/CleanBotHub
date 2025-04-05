@@ -7,6 +7,7 @@ export default withMermaid(defineConfig({
     title: "CleanBot Hub",
     description: "A VitePress Site",
     base: '/',
+    outDir: '../dist',
     vite: {
         publicDir: "../public",
     },
