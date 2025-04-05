@@ -1,8 +1,10 @@
-# Webhook 
+# Webhook
 
-该架构基于Kubernetes集群，和kafka管道的分布式微服务.
-使用Flink进行状态处理和异步写入Kafka主题。它包括以下组件：
+WebHook 的单例实现, 通过HTTP POST请求接收机器人发送的消息, 进行签名验证, 然后将消息异步写入Kafka Topic, 供Flink处理.
 
+- Webhook接入机器人数据.
+- 校验签名.
+- 写入kafka管道
 
 ```mermaid
 graph TD

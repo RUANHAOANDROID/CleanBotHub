@@ -8,7 +8,7 @@ hero:
   tagline: "智能服务机器人混合云管理平台设计"
   actions:
     - theme: brand
-      text: 架构 & 选型 # Architecture & Selection
+      text: Architecture & Selection # Architecture & Selection
       link: /design/
     - theme: alt
       text: RobotControl Server

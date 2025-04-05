@@ -1,7 +1,7 @@
 # Horizontal Pod Autoscaler (HPA) 
 作为核心弹性伸缩组件，其作用可归纳为以下六个关键维度，通过动态扩缩容保障系统的高可用与资源高效利用：
 
-1. Webhook服务的流量驱动扩缩
+## 1. Webhook服务的流量驱动扩缩
 
 | 场景        | 	扩缩逻辑                         | 	效果           | 
 |-----------|-------------------------------|---------------|
@@ -40,7 +40,7 @@ spec:
           averageValue: 500  # 每个Pod处理500 RPS
 ```
 
-2. Flink任务管理器的状态感知扩缩
+## 2. Flink任务管理器的状态感知扩缩
 
 ```mermaid
 graph TB
@@ -61,7 +61,7 @@ graph TB
     - 缩容前自动触发Savepoint保存状态
     - 新Pod优先从Checkpoint恢复
 
-3.机器人数据服务的存储压力响应  
+## 3.机器人数据服务的存储压力响应  
 
 |指标 |阈值 |动作|
 |--- |--- |---|
@@ -69,7 +69,7 @@ graph TB
 |mongodb_ops_queue|    >1000 |扩容查询专用Pod|
 |robot_metadata_cache_hit_ratio|    <90%| 扩容缓存预热Pod|
 
-4.控制服务的指令负载均衡
+## 4.控制服务的指令负载均衡
 ```python
 # 自定义指标适配器（Python示例）
 def calculate_desired_replicas(current_replicas, metrics):
@@ -82,7 +82,7 @@ def calculate_desired_replicas(current_replicas, metrics):
         active_connections // 500
     )
 ```
-5. 冷启动优化与反压缓冲
+## 5. 冷启动优化与反压缓冲
 - 预热机制：
 ```yaml
 behavior:
@@ -97,7 +97,7 @@ behavior:
   - 当检测到flink_backpressure>0.7时暂停缩容
   - 自动触发kafka_consumer_fetch_rate调整
 
-6. 跨AZ的拓扑感知调度
+## 6. 跨AZ的拓扑感知调度
 ```mermaid
 graph LR
     HPA -->|扩缩请求| A[K8s Scheduler]
@@ -106,13 +106,10 @@ graph LR
     
     style HPA fill:#4CAF50,stroke:#333
 ```
-技术价值      
-✅ 秒级弹性：从指标检测到完成扩缩平均耗时30秒    
-✅ 成本优化：夜间自动缩容节省40%云资源支出   
-✅ 故障自愈：自动替换不健康Pod保障SLA 99.95%   
-✅ 混合负载适应：同时处理突发流量与稳态业务      
-
-典型应用场景：   
-🔸 机器人固件批量升级时，控制服务Pod从20→80自动扩容    
-🔸 电商大促期间，Webhook实例根据QPS从50→200动态调整      
+## 7.技术亮点      
+- 秒级弹性：从指标检测到完成扩缩平均耗时30秒    
+- 成本优化：夜间自动缩容节省40%云资源支出   
+- 故障自愈：自动替换不健康Pod保障SLA 99.95%   
+- 混合负载适应：同时处理突发流量与稳态业务      
+ 
 

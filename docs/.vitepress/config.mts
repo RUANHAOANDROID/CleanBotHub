@@ -24,7 +24,7 @@ export default withMermaid(defineConfig({
                     items: [
                         {text: 'architecture', link: '/design/'},
                         {text: 'stage', link: '/design/stage'},
-                        {text: 'RobotControl API Server', link: '/design/server-control'},
+                        {text: 'Robot Control API Server', link: '/design/server-control'},
                         {text: 'WebHook Server', link: '/design/server-webhook'},
                         {text: 'Prometheus', link: '/design/prometheus'},
                         {text: 'HPA', link: '/design/hpa'},
