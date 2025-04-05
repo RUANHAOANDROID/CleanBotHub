@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  vitepress-dev:
+    build:
+      context: .
+      dockerfile: docker/dev/Dockerfile
+    ports:
+      - "5173:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    # 开发时使用这个命令可以进入容器
+    # stdin_open: true
+    # tty: true
