@@ -34,7 +34,7 @@ export default withMermaid(defineConfig({
             ],
         },
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/RUANHAOANDROID'}
+            //{icon: 'github', link: 'https://github.com/RUANHAOANDROID'}
         ]
     },
     mermaid: {
