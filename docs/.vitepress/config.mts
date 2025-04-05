@@ -6,6 +6,7 @@ import {withMermaid} from "vitepress-plugin-mermaid";
 export default withMermaid(defineConfig({
     title: "CleanBot Hub",
     description: "A VitePress Site",
+    base: '/',
     vite: {
         publicDir: "../public",
     },
