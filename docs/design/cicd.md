@@ -1,4 +1,4 @@
-# DevOps
+# CI/CD
 
 Drone 和 Woodpecker (区别很小) 插件可共用功能完备。
 
@@ -76,6 +76,43 @@ networks:
     name: dev
     driver: bridge
     external: true
+```
+
+## 示例
+
+取自我的云原生混合项目,自动构建和推送多架构镜像到Docker Hub,然后进一不实施
+
+```yaml
+kind: pipeline
+type: docker
+name: default
+trigger:
+  branch:
+    #- dev
+    - master
+steps:
+  - name: build_push
+    image: docker:dind
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+    environment:
+      DOCKER_BUILDKIT: 1
+      DOCKER_USER:
+        from_secret: DOCKER_USER
+      DOCKER_PWD:
+        from_secret: DOCKER_PWD
+    commands:
+      - docker --version
+      - docker login -u "$DOCKER_USER" -p "$DOCKER_PWD".    # login to docker hub
+      - docker buildx create --name aBuildX --use      # Create and use a Buildx builder
+      - docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile -t hao88/wgmserver:amd64 -t hao88/wgmserver:arm64 --push . # Build and push multi-arch images
+      - docker buildx rm aBuildX  # Remove the Buildx builder
+volumes:
+  - name: docker
+    host:
+      path: /var/run/docker.sock
+
 ```
 
 ## Graph
