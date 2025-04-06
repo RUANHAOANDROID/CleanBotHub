@@ -1,12 +1,14 @@
 # Robot Control API Service
 
-机器人控制服务 ,通过该服务机器人提供商平台交互
+机器人控制API服务
 
-- 列出机器人
-- 下发作业任务
-- 注册 Webhook
+## 功能
+- 从机器人提供商服务列出机器人
+- 下发作业任务到清洁机器人
+- 注册 Webhook供回调上报状态
 - ...
 
+## Graph
 ```mermaid
 graph TD
     A[Robot Control Service] -->|获取机器人列表| B[Robot Service]

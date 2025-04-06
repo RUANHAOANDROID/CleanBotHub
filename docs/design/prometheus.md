@@ -108,7 +108,7 @@ graph LR
 - Kafka管道监控：消息积压量、生产者/消费者速率比
 
 ## 7.技术亮点  
-- 统一采集：通过Exporters标准化不同组件指标     
-- 高效存储：TSDB压缩后仅占原始数据10%空间  
+- 统一采集：通过[Exporters](https://prometheus.io/docs/instrumenting/exporters/)标准化不同组件指标     
+- 高效存储：RocksDB压缩后相对原始数据存储空间减少  
 - 无缝告警：与Alertmanager集成支持多通道通知  
 - 生态兼容：完美对接Kubernetes/Istio等云原生组件 

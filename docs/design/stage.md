@@ -24,16 +24,32 @@ graph LR
 1.一键启动依赖：
 
 ```yaml
-
 # docker-compose-local.yml
 version: '3'
 services:
   kafka:
     image: bitnami/kafka:3.4
-    ports: [ "9092:9092" ]
+    ports: [ "59092:9092" ]
+    #....
   redis:
     image: redis:alpine
-    ports: [ "6379:6379" ]
+    ports: [ "56379:6379" ]
+    # ....
+  api-server:
+    build: ./api-server
+    ports: [ "58080:8080" ]
+    #.....
+  webhook-server:
+    build: ./webhook-server
+    ports: [ "58081:8081" ]
+    #....
+  kafka-ui: 
+    image: dockerized/kafka-ui
+    ports: [ "58082:8080" ]
+    environment:
+      KAFKA_CLUSTERS_0_NAME: "local"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
+  #....
 ```
 
 2.开发模式配置：
@@ -82,8 +98,9 @@ kubectl port-forward svc/webhook 8080:80
 - 基础监控指标查看（CPU/内存）
 
 ## 阶段三：核心组件高可用（过渡架构）
-🎯 目标：业务量增长后的关键组件强化
-分步实施清单：
+业务量增长后的关键组件强化
+
+**分步实施**：
 
 1.Kafka集群化：
 
@@ -122,9 +139,10 @@ config:
 - Flink JobManager故障自动转移
 
 - Redis主从切换数据一致性
-## 阶段四：最终架构
+## 阶段四：最终架构 
 
-🎯 目标：支撑百万级设备接入
+支撑百万级设备接入 
+
 完整技术栈启用：
 >Istio 是一个可配置的开源服务网格层，用于连接、监控和保护 Kubernetes 集群中的容器。
 ```mermaid

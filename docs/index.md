@@ -11,14 +11,14 @@ hero:
       text: Architecture & Selection
       link: /design/
     - theme: alt
-      text: RobotControl Server
+      text: Robot Control API Server
       link: /design/server-control
     - theme: alt
       text: Webhook Server
       link: /design/server-webhook
     - theme: alt
-      text: DevOps
-      link: /design/devops
+      text: CI/CD
+      link: /design/cicd
       
 features:
 

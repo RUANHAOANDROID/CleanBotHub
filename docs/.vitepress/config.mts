@@ -28,7 +28,7 @@ export default withMermaid(defineConfig({
                         {text: 'WebHook Server', link: '/design/server-webhook'},
                         {text: 'Prometheus', link: '/design/prometheus'},
                         {text: 'HPA', link: '/design/hpa'},
-                        {text: 'DevOps', link: '/design/devops'},
+                        {text: 'CI/CD', link: '/design/cicd'},
                     ]
                 }
             ],
