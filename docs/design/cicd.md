@@ -8,9 +8,11 @@ Drone 和 Woodpecker (区别很小) 插件可共用功能完备。
 那么也就意味着我们可以从Docker阶段出发最终过渡到K8s集群
 
 当然我们也可以选择GitHub Actions 或 AWS CodePipeline,他们在原理上是相通的
+
 ## 部署
 
-这是我的服务器中的docker-compose文件,可以直接使用
+为方便构建,这是我的服务器中的docker-compose文件,可以直接使用验证
+> 替换到实际使用的git
 
 ``` bash
 ``` yaml
